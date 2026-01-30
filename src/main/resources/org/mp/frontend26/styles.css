@@ -1,0 +1,347 @@
+/* ===== AWS Color Variables ===== */
+.root {
+    /* AWS Official Colors */
+    -aws-orange: #FF9900;
+    -aws-dark: #232F3E;
+    -aws-teal: #3FB1A7;
+    -aws-red: #D13212;
+
+    /* Supporting Colors */
+    -color-gray-50: #F9FAFB;
+    -color-gray-100: #F3F4F6;
+    -color-gray-200: #E5E7EB;
+    -color-gray-300: #D1D5DB;
+    -color-gray-400: #9CA3AF;
+    -color-gray-500: #6B7280;
+    -color-gray-600: #687078;
+    -color-gray-700: #4B5563;
+}
+
+/* ===== Root Background (Serene Gradient) ===== */
+.root-pane {
+    -fx-background-color: linear-gradient(to bottom right,
+        #E8F4F8 0%,
+        #FFF4E6 50%,
+        #F0F8F0 100%);
+    -fx-font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+    -fx-font-size: 16px;
+}
+
+/* ===== Top Bar ===== */
+.top-bar {
+    -fx-background-color: -aws-dark;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, 2);
+}
+
+/* Connect Toggle Button */
+.connect-toggle {
+    -fx-background-color: white;
+    -fx-text-fill: -aws-dark;
+    -fx-font-weight: bold;
+    -fx-padding: 10 18 10 18;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-gray-300;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.connect-toggle:hover {
+    -fx-border-color: -aws-orange;
+    -fx-effect: dropshadow(gaussian, rgba(255, 153, 0, 0.2), 8, 0, 0, 2);
+}
+
+.connect-toggle:selected {
+    -fx-background-color: -aws-orange;
+    -fx-border-color: -aws-orange;
+}
+
+.connect-toggle:selected .toggle-label {
+    -fx-text-fill: white;
+}
+
+.connect-toggle:selected .icon-orange {
+    -fx-icon-color: white;
+}
+
+.toggle-label {
+    -fx-text-fill: -aws-dark;
+    -fx-font-weight: bold;
+}
+
+/* Status Container */
+.status-container {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-padding: 8 16 8 16;
+    -fx-border-color: -color-gray-200;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+}
+
+.status-dot {
+    -fx-min-width: 8;
+    -fx-min-height: 8;
+    -fx-max-width: 8;
+    -fx-max-height: 8;
+    -fx-background-color: -color-gray-400;
+    -fx-background-radius: 50%;
+}
+
+.status-label {
+    -fx-text-fill: -color-gray-500;
+    -fx-font-weight: 600;
+}
+
+/* Status States - Apply via Controller */
+.status-container.connected .status-dot {
+    -fx-background-color: -aws-teal;
+    -fx-effect: dropshadow(gaussian, -aws-teal, 6, 0, 0, 0);
+}
+
+.status-container.connected .status-label {
+    -fx-text-fill: -aws-teal;
+}
+
+/* Icon Button */
+.icon-btn {
+    -fx-background-color: white;
+    -fx-padding: 10 12 10 12;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-gray-300;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.icon-btn:hover {
+    -fx-border-color: -aws-orange;
+}
+
+/* ===== Content Scroll ===== */
+.content-scroll {
+    -fx-background-color: transparent;
+}
+
+.content-scroll > .viewport {
+    -fx-background-color: transparent;
+}
+
+.content-scroll .scroll-bar:vertical {
+    -fx-background-color: transparent;
+}
+
+.content-scroll .scroll-bar:vertical .track {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+    -fx-background-radius: 4;
+}
+
+.content-scroll .scroll-bar:vertical .thumb {
+    -fx-background-color: rgba(209, 213, 219, 0.5);
+    -fx-background-radius: 4;
+}
+
+.content-scroll .scroll-bar:vertical .thumb:hover {
+    -fx-background-color: rgba(209, 213, 219, 0.7);
+}
+
+/* ===== Header ===== */
+.page-title {
+    -fx-font-size: 26px;
+    -fx-font-weight: bold;
+    -fx-text-fill: -aws-dark;
+}
+
+.page-subtitle {
+    -fx-text-fill: -color-gray-600;
+    -fx-font-size: 16px;
+}
+
+/* ===== Form Card ===== */
+.form-card {
+    -fx-background-color: rgba(255, 255, 255, 0.88);
+    -fx-background-radius: 12;
+    -fx-border-color: rgba(209, 213, 219, 0.6);
+    -fx-border-width: 1;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 15, 0, 0, 3);
+}
+
+/* Field Labels */
+.field-label {
+    -fx-font-weight: 600;
+    -fx-text-fill: -aws-dark;
+    -fx-font-size: 16px;
+}
+
+/* ===== Text Fields ===== */
+.text-field {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-gray-300;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-text-fill: -aws-dark;
+    -fx-padding: 10 14 10 14;
+    -fx-font-size: 16px;
+}
+
+.text-field:focused {
+    -fx-border-color: -aws-orange;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 153, 0, 0.15), 8, 0, 0, 0);
+}
+
+.readonly-field {
+    -fx-background-color: -color-gray-50;
+    -fx-text-fill: -color-gray-500;
+}
+
+/* ===== Text Areas ===== */
+.text-area {
+    -fx-background-color: white;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-gray-300;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-padding: 10 14 10 14;
+}
+
+.text-area:focused {
+    -fx-border-color: -aws-orange;
+    -fx-border-width: 1.5;
+    -fx-effect: dropshadow(gaussian, rgba(255, 153, 0, 0.15), 8, 0, 0, 0);
+}
+
+.text-area .content {
+    -fx-background-color: transparent;
+    -fx-text-fill: -aws-dark;
+    -fx-font-size: 16px;
+}
+
+.text-area .scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.text-area .scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+/* ===== Bottom Bar ===== */
+.bottom-bar {
+    -fx-background-color: -aws-dark;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.1), 10, 0, 0, -2);
+}
+
+/* ===== Navigation Buttons ===== */
+.nav-btn {
+    -fx-background-color: white;
+    -fx-padding: 10 14 10 14;
+    -fx-background-radius: 8;
+    -fx-border-color: -color-gray-300;
+    -fx-border-width: 1;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.nav-btn:hover {
+    -fx-border-color: -aws-orange;
+    -fx-background-color: rgba(255, 153, 0, 0.05);
+}
+
+.nav-btn:hover .icon-gray {
+    -fx-icon-color: -aws-orange;
+}
+
+.nav-btn:pressed {
+    -fx-scale-x: 0.97;
+    -fx-scale-y: 0.97;
+}
+
+/* ===== Action Buttons ===== */
+.action-btn {
+    -fx-background-color: white;
+    -fx-padding: 12 24 12 24;
+    -fx-background-radius: 8;
+    -fx-border-width: 1.5;
+    -fx-border-radius: 8;
+    -fx-cursor: hand;
+}
+
+.action-btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.12), 10, 0, 0, 3);
+}
+
+.action-btn:pressed {
+    -fx-scale-x: 0.98;
+    -fx-scale-y: 0.98;
+}
+
+/* Create Button */
+.create-btn {
+    -fx-border-color: -aws-teal;
+}
+
+.create-btn:hover {
+    -fx-background-color: rgba(63, 177, 167, 0.08);
+}
+
+.create-label {
+    -fx-text-fill: -aws-teal;
+    -fx-font-weight: bold;
+}
+
+/* Update Button */
+.update-btn {
+    -fx-border-color: -aws-orange;
+}
+
+.update-btn:hover {
+    -fx-background-color: rgba(255, 153, 0, 0.08);
+}
+
+.update-label {
+    -fx-text-fill: -aws-orange;
+    -fx-font-weight: bold;
+}
+
+/* Delete Button */
+.delete-btn {
+    -fx-border-color: -aws-red;
+}
+
+.delete-btn:hover {
+    -fx-background-color: rgba(209, 50, 18, 0.08);
+}
+
+.delete-label {
+    -fx-text-fill: -aws-red;
+    -fx-font-weight: bold;
+}
+
+/* ===== Icon Colors ===== */
+.icon-orange {
+    -fx-icon-color: -aws-orange;
+}
+
+.icon-teal {
+    -fx-icon-color: -aws-teal;
+}
+
+.icon-red {
+    -fx-icon-color: -aws-red;
+}
+
+.icon-gray {
+    -fx-icon-color: -color-gray-600;
+}
+
+/* ===== Tooltips ===== */
+.tooltip {
+    -fx-background-color: rgba(35, 47, 62, 0.95);
+    -fx-text-fill: white;
+    -fx-background-radius: 6;
+    -fx-font-size: 16px;
+    -fx-padding: 6 10 6 10;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 8, 0, 0, 2);
+}

@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import org.kordamp.ikonli.javafx.FontIcon?>
+
+<?import javafx.scene.input.KeyCodeCombination?>
+<BorderPane xmlns:fx="http://javafx.com/fxml"
+            fx:controller="org.mp.frontend26.MpGuiController"
+            styleClass="root-pane"
+            stylesheets="@styles.css">
+
+    <!-- ===== TOP BAR ===== -->
+    <top>
+        <VBox>
+            <!-- MenuBar -->
+            <MenuBar>
+                <!-- File Menu -->
+                <Menu text="File">
+                    <MenuItem text="Exit" onAction="#onMenuExit">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2e-exit-to-app" iconSize="14" styleClass="icon-red"/>
+                        </graphic>
+                    </MenuItem>
+                </Menu>
+
+                <!-- Edit Menu -->
+                <Menu text="View">
+                    <MenuItem text="Undo">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2u-undo" iconSize="14" styleClass="icon-gray"/>
+                        </graphic>
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="Z" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        </accelerator>
+                    </MenuItem>
+                    <MenuItem text="Redo">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2r-redo" iconSize="14" styleClass="icon-gray"/>
+                        </graphic>
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="Y" control="DOWN" meta="UP" shift="UP" shortcut="UP"/>
+                        </accelerator>
+                    </MenuItem>
+                </Menu>
+
+                <!-- View Menu -->
+                <Menu text="View">
+                    <MenuItem text="Refresh" onAction="#onReload">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2r-refresh" iconSize="14" styleClass="icon-orange"/>
+                        </graphic>
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="F5" control="UP" meta="UP" shift="UP" shortcut="UP"/>
+                        </accelerator>
+                    </MenuItem>
+                </Menu>
+
+                <!-- Help Menu -->
+                <Menu text="Help">
+                    <MenuItem text="Documentation" onAction="#onMenuDocs">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2b-book-open" iconSize="14" styleClass="icon-gray"/>
+                        </graphic>
+                    </MenuItem>
+                    <MenuItem text="About AWS Manager" onAction="#onMenuAbout">
+                        <graphic>
+                            <FontIcon iconLiteral="mdi2i-information" iconSize="14" styleClass="icon-orange"/>
+                        </graphic>
+                    </MenuItem>
+                </Menu>
+            </MenuBar>
+
+            <!-- Existing Top Bar -->
+            <HBox styleClass="top-bar" spacing="15" alignment="CENTER_LEFT">
+                <padding>
+                    <Insets top="15" right="20" bottom="15" left="20"/>
+                </padding>
+
+                <ToggleButton fx:id="connectToggle" styleClass="connect-toggle" onAction="#onConnectToggle">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER">
+                            <FontIcon iconLiteral="mdi2p-power" iconSize="16" styleClass="icon-orange"/>
+                            <Label text="" styleClass="toggle-label"/>
+                        </HBox>
+                    </graphic>
+                </ToggleButton>
+
+                <HBox fx:id="statusIndicator" styleClass="status-container" spacing="8" alignment="CENTER">
+                    <Region styleClass="status-dot"/>
+                    <Label fx:id="statusLabel" text="Disconnected" styleClass="status-label"/>
+                </HBox>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button fx:id="reloadButton" styleClass="icon-btn" onAction="#onReload">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2r-refresh" iconSize="16" styleClass="icon-orange"/>
+                    </graphic>
+                    <tooltip>
+                        <Tooltip text="Reload Data"/>
+                    </tooltip>
+                </Button>
+            </HBox>
+        </VBox>
+    </top>
+
+    <!-- ===== CENTER FORM ===== -->
+    <center>
+        <ScrollPane fitToWidth="true" styleClass="content-scroll">
+            <VBox spacing="20">
+                <padding>
+                    <Insets top="25" right="25" bottom="25" left="25"/>
+                </padding>
+
+                <!-- Header -->
+                <VBox spacing="8">
+                    <HBox alignment="CENTER_LEFT" spacing="12">
+                        <FontIcon iconLiteral="mdi2a-aws" iconSize="32" styleClass="icon-orange"/>
+                        <Label text="AWS Learning Module" styleClass="page-title"/>
+                    </HBox>
+                    <Label text="Manage your cloud learning content" styleClass="page-subtitle"/>
+                </VBox>
+
+                <!-- Form Card -->
+                <VBox styleClass="form-card" spacing="20">
+                    <padding>
+                        <Insets top="25" right="25" bottom="25" left="25"/>
+                    </padding>
+
+                    <GridPane hgap="20" vgap="18">
+                        <columnConstraints>
+                            <ColumnConstraints minWidth="150" prefWidth="150"/>
+                            <ColumnConstraints hgrow="ALWAYS"/>
+                        </columnConstraints>
+
+                        <!-- Module ID -->
+                        <Label text="Module ID" styleClass="field-label"
+                               GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                        <TextField fx:id="moduleIdField" editable="false" styleClass="text-field, readonly-field"
+                                   promptText="Auto-generated"
+                                   GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                        <!-- Title -->
+                        <Label text="Title" styleClass="field-label"
+                               GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                        <TextField fx:id="moduleTitleField" styleClass="text-field"
+                                   promptText="Enter module title"
+                                   GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                        <!-- Summary -->
+                        <Label text="Summary" styleClass="field-label"
+                               GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="moduleSummaryArea" prefRowCount="3" wrapText="true" styleClass="text-area"
+                                  promptText="Brief overview of the module"
+                                  GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                        <!-- Learning Outcomes -->
+                        <Label text="Learning Outcomes" styleClass="field-label"
+                               GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="learningOutcomesArea" prefRowCount="3" wrapText="true" styleClass="text-area"
+                                  promptText="What students will learn"
+                                  GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                        <!-- Sales Pitch -->
+                        <Label text="Sales Pitch" styleClass="field-label"
+                               GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                        <TextArea fx:id="salesPitchArea" prefRowCount="3" wrapText="true" styleClass="text-area"
+                                  promptText="Compelling description"
+                                  GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                        <!-- Image URI -->
+                        <Label text="Image URI" styleClass="field-label"
+                               GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                        <TextField fx:id="imageUriField" styleClass="text-field"
+                                   promptText="https://example.com/image.jpg"
+                                   GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+                        <!-- Time Requirement -->
+                        <Label text="Time Requirement" styleClass="field-label"
+                               GridPane.rowIndex="6" GridPane.columnIndex="0"/>
+                        <TextField fx:id="timeRequirementField" styleClass="text-field"
+                                   promptText="e.g., 2-3 hours"
+                                   GridPane.rowIndex="6" GridPane.columnIndex="1"/>
+
+                        <!-- Difficulty Level -->
+                        <Label text="Difficulty Level" styleClass="field-label"
+                               GridPane.rowIndex="7" GridPane.columnIndex="0"/>
+                        <TextField fx:id="difficultyLevelField" styleClass="text-field"
+                                   promptText="Double"
+                                   GridPane.rowIndex="7" GridPane.columnIndex="1"/>
+                    </GridPane>
+                </VBox>
+
+            </VBox>
+        </ScrollPane>
+    </center>
+
+    <!-- ===== BOTTOM CONTROLS ===== -->
+    <bottom>
+        <VBox styleClass="bottom-bar" spacing="14">
+            <padding>
+                <Insets top="18" right="20" bottom="18" left="20"/>
+            </padding>
+
+            <!-- Navigation Buttons -->
+            <HBox spacing="6" alignment="CENTER">
+                <Button fx:id="firstButton" styleClass="nav-btn" onAction="#onFirst">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2s-skip-previous" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="First Record"/></tooltip>
+                </Button>
+
+                <Button fx:id="backThreeButton" styleClass="nav-btn" onAction="#onBackThree">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2c-chevron-triple-left" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="Back 3 Records"/></tooltip>
+                </Button>
+
+                <Button fx:id="backOneButton" styleClass="nav-btn" onAction="#onBackOne">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2c-chevron-left" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="Previous Record"/></tooltip>
+                </Button>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Button fx:id="forwardOneButton" styleClass="nav-btn" onAction="#onForwardOne">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2c-chevron-right" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="Next Record"/></tooltip>
+                </Button>
+
+                <Button fx:id="forwardThreeButton" styleClass="nav-btn" onAction="#onForwardThree">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2c-chevron-triple-right" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="Forward 3 Records"/></tooltip>
+                </Button>
+
+                <Button fx:id="lastButton" styleClass="nav-btn" onAction="#onLast">
+                    <graphic>
+                        <FontIcon iconLiteral="mdi2s-skip-next" iconSize="14" styleClass="icon-gray"/>
+                    </graphic>
+                    <tooltip><Tooltip text="Last Record"/></tooltip>
+                </Button>
+            </HBox>
+
+            <!-- CRUD Buttons -->
+            <HBox spacing="12" alignment="CENTER">
+                <Button fx:id="createButton" styleClass="action-btn, create-btn" onAction="#onCreate">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER">
+                            <FontIcon iconLiteral="mdi2p-plus-circle" iconSize="16" styleClass="icon-teal"/>
+                            <Label text="Create" styleClass="create-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="updateButton" styleClass="action-btn, update-btn" onAction="#onUpdate">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER">
+                            <FontIcon iconLiteral="mdi2c-content-save" iconSize="16" styleClass="icon-orange"/>
+                            <Label text="Update" styleClass="update-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+
+                <Button fx:id="deleteButton" styleClass="action-btn, delete-btn" onAction="#onDelete">
+                    <graphic>
+                        <HBox spacing="8" alignment="CENTER">
+                            <FontIcon iconLiteral="mdi2d-delete" iconSize="16" styleClass="icon-red"/>
+                            <Label text="Delete" styleClass="delete-label"/>
+                        </HBox>
+                    </graphic>
+                </Button>
+            </HBox>
+
+        </VBox>
+    </bottom>
+
+</BorderPane>

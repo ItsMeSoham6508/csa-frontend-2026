@@ -8,7 +8,10 @@ module org.mp.frontend26 {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
+    requires static lombok;
 
     opens org.mp.frontend26 to javafx.fxml;
     exports org.mp.frontend26;
+    exports org.mp.frontend26.dto;
 }
